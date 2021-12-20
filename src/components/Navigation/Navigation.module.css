@@ -1,0 +1,14 @@
+.Link {
+  display: inline-block;
+  padding: 12px;
+  text-decoration: none;
+  color: white;
+}
+
+.Link:hover {
+  color: cornflowerblue;
+}
+
+.ActiveLink {
+  color: rgb(255, 136, 127);
+}
