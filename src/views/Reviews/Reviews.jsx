@@ -26,11 +26,12 @@ export default function Reviews({ movieId }) {
   return (
     <>
       {reviews.length > 0 ? (
-        <ul className={null}>
+        <ul className={s.ReviewList}>
           {reviews.map(({ id, author, content }) => (
-            <li key={id} className={null}>
-              <h3 className={null}>{`Author: ${author}`}</h3>
-              <p className={null}>{content}</p>
+            <li key={id} className={s.ReviewItem}>
+              <h3>{`Author: ${author}`}</h3>
+              <p>{content}</p>
+              <hr />
             </li>
           ))}
         </ul>

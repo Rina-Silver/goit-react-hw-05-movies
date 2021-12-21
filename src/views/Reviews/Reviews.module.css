@@ -1,0 +1,9 @@
+.ReviewList {
+  list-style-type: none;
+  font-size: 14px;
+}
+
+.ReviewItem {
+  max-height: 150px;
+  overflow-y: scroll;
+}

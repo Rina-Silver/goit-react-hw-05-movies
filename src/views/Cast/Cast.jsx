@@ -29,7 +29,7 @@ export default function Cast({ movieId }) {
     {cast.length > 0 ? (
       <ul>
         {cast.map(({ id, profile_path, name, character }) => (
-          <li key={id} className={null}>
+          <li key={id} className={s.CastItem}>
             <img
               src={
                 profile_path
