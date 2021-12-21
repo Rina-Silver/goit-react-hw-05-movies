@@ -4,6 +4,9 @@ import {
   useRouteMatch,
   useHistory,
   useParams,
+  NavLink,
+  Switch,
+  Route,
 } from 'react-router-dom';
 import { fetchMovieDetails } from '../../services/tmdbfilms-api';
 import { toast } from 'react-toastify';
@@ -43,8 +46,7 @@ export default function MovieDetailsPage() {
       <button
         type="button"
         className={s.Button}
-
-        // onClick={() => history.goBack()}
+        onClick={() => history.goBack()}
       >
         Go back
       </button>
@@ -52,7 +54,11 @@ export default function MovieDetailsPage() {
         <>
           <div className={s.MovieCard}>
             <img
-              src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+              src={
+                poster_path
+                  ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                  : defaultImg
+              }
               alt={title}
               width="300"
             />
@@ -67,6 +73,37 @@ export default function MovieDetailsPage() {
           </div>
         </>
       )}
+      <>
+        <NavLink
+          to={{
+            pathname: `${url}/cast`,
+            state: { from: location?.state?.from },
+          }}
+          className={s.MovieInfoLink}
+          activeClassName={s.MovieInfoLink__active}
+        >
+          Cast
+        </NavLink>
+
+        <NavLink
+          to={{
+            pathname: `${url}/reviews`,
+            state: { from: location?.state?.from },
+          }}
+          className={s.MovieInfoLink}
+          activeClassName={s.MovieInfoLink__active}
+        >
+          Reviews
+        </NavLink>
+      </>
+      <Switch>
+        <Route path={`${path}/cast`}>
+          <Cast movieId={moviesId} />
+        </Route>
+        {/* <Route path={`${path}/reviews`}>
+          <Reviews movieId={moviesId} />
+        </Route> */}
+      </Switch>
     </section>
   );
 }
