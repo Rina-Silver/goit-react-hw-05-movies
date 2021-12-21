@@ -3,6 +3,7 @@ import { Link, useRouteMatch, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { fetchTrendingMovies } from '../../services/tmdbfilms-api';
 import s from './HomePage.module.css';
+const defaultImg = 'https://socialkit.ru/thumbs/crop/406x558/no-image.jpg';
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -42,7 +43,11 @@ export default function HomePage() {
                 >
                   <img
                     className={s.ImageGalleryItem__image}
-                    src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                    src={
+                      poster_path
+                        ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+                        : defaultImg
+                    }
                     alt={title}
                   />
                 </Link>
