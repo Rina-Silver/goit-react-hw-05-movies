@@ -9,6 +9,7 @@ import {
   Route,
 } from 'react-router-dom';
 import { fetchMovieDetails } from '../../services/tmdbfilms-api';
+import Cast from 'views/Cast';
 import { toast } from 'react-toastify';
 
 import s from './MovieDetailsPage.module.css';
@@ -97,8 +98,8 @@ export default function MovieDetailsPage() {
         </NavLink>
       </>
       <Switch>
-        <Route path={`${path}/cast`}>
-          <Cast movieId={moviesId} />
+        <Route path={`${path}:movieId/cast`}>
+          <Cast moviesId={moviesId} />
         </Route>
         {/* <Route path={`${path}/reviews`}>
           <Reviews movieId={moviesId} />
