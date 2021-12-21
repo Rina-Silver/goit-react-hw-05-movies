@@ -4,6 +4,7 @@
 }
 
 .ReviewItem {
-  max-height: 150px;
-  overflow-y: scroll;
+  max-height: 200px;
+  overflow-y: auto;
+  border-bottom: 1px solid rgb(141, 134, 134);
 }

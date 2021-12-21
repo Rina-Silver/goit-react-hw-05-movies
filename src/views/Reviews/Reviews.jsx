@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { fetchMovieReviews } from '../../services/tmdbfilms-api';
+import PropTypes from 'prop-types';
 import s from './Reviews.module.css';
 export default function Reviews({ movieId }) {
   const [reviews, setReviews] = useState([]);
@@ -31,7 +32,6 @@ export default function Reviews({ movieId }) {
             <li key={id} className={s.ReviewItem}>
               <h3>{`Author: ${author}`}</h3>
               <p>{content}</p>
-              <hr />
             </li>
           ))}
         </ul>
@@ -41,3 +41,5 @@ export default function Reviews({ movieId }) {
     </>
   );
 }
+
+Reviews.propTypes = { movieId: PropTypes.string.isRequired };

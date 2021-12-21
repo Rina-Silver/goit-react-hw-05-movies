@@ -1,4 +1,8 @@
-import s from './NotFoundPage.module.css';
+// import s from './NotFoundPage.module.css';
 export default function NotFoundPage() {
-  return <></>;
+  return (
+    <>
+      <h2>Page not found</h2>
+    </>
+  );
 }

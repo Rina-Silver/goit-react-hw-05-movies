@@ -3,9 +3,10 @@ import { Link, useRouteMatch, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { fetchTrendingMovies } from '../../services/tmdbfilms-api';
 import s from './HomePage.module.css';
-const defaultImg = 'https://socialkit.ru/thumbs/crop/406x558/no-image.jpg';
 
 export default function HomePage() {
+  const defaultImg = 'https://socialkit.ru/thumbs/crop/406x558/no-image.jpg';
+
   const [movies, setMovies] = useState([]);
   //для вложенной навигации исп url в useRouteMatch
   const { url } = useRouteMatch();
