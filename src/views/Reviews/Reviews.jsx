@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { fetchMovieReviews } from '../../services/tmdbfilms-api';
 import s from './Reviews.module.css';
-export default function Reviews(movieId) {
+export default function Reviews({ movieId }) {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {

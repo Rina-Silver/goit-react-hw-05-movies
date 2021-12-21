@@ -6,9 +6,9 @@ import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 const defaultImg = 'https://socialkit.ru/thumbs/crop/406x558/no-image.jpg';
 
-export default function Cast(movieId) {
+export default function Cast({ movieId }) {
   const [cast, setCast] = useState(null);
-  console.log(movieId);
+  //   console.log(movieId);
 
   useEffect(() => {
     fetchMovieCasts(movieId)

@@ -24,6 +24,8 @@ export default function MovieDetailsPage() {
   const defaultImg = 'https://socialkit.ru/thumbs/crop/406x558/no-image.jpg';
 
   useEffect(() => {
+    // console.log(path);
+    // console.log(url);
     fetchMovieDetails(movieId)
       // .then(data => console.log(data.poster_path))
       .then(setMovie)
