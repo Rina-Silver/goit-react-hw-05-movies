@@ -3,14 +3,16 @@ import { fetchMovieCasts } from '../../services/tmdbfilms-api';
 import PropTypes from 'prop-types';
 import s from './Cast.module.css';
 import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
 const defaultImg = 'https://socialkit.ru/thumbs/crop/406x558/no-image.jpg';
 
-export default function Cast({ moviesId }) {
+export default function Cast(movieId) {
   const [cast, setCast] = useState(null);
+  console.log(movieId);
 
   useEffect(() => {
-    fetchMovieCasts(moviesId)
-      .then(data => console.log(data.cast))
+    fetchMovieCasts(movieId)
+      .then(data => setCast(data.cast))
       .catch(error =>
         toast.error('Error, try again later', {
           position: 'top-right',
@@ -22,9 +24,9 @@ export default function Cast({ moviesId }) {
           progress: undefined,
         }),
       );
-  }, [moviesId]);
+  }, [movieId]);
   <>
-    {cast.length !== 0 ? (
+    {cast.length > 0 ? (
       <ul>
         {cast.map(({ id, profile_path, name, character }) => (
           <li key={id} className={null}>
@@ -49,4 +51,4 @@ export default function Cast({ moviesId }) {
   </>;
 }
 
-Cast.propTypes = { moviesId: PropTypes.string.isRequired };
+Cast.propTypes = { movieId: PropTypes.string.isRequired };

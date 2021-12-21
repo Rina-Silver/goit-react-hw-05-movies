@@ -10,20 +10,21 @@ import {
 } from 'react-router-dom';
 import { fetchMovieDetails } from '../../services/tmdbfilms-api';
 import Cast from 'views/Cast';
+import Reviews from 'views/Reviews';
 import { toast } from 'react-toastify';
 
 import s from './MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage() {
   const { url, path } = useRouteMatch();
-  const { moviesId } = useParams();
+  const { movieId } = useParams();
   const [movie, setMovie] = useState([]);
   const history = useHistory();
   const location = useLocation();
   const defaultImg = 'https://socialkit.ru/thumbs/crop/406x558/no-image.jpg';
 
   useEffect(() => {
-    fetchMovieDetails(moviesId)
+    fetchMovieDetails(movieId)
       // .then(data => console.log(data.poster_path))
       .then(setMovie)
       .catch(error =>
@@ -37,7 +38,7 @@ export default function MovieDetailsPage() {
           progress: undefined,
         }),
       );
-  }, [moviesId]);
+  }, [movieId]);
 
   const { poster_path, title, overview, genres, vote_average } = movie;
   const genresList = genres?.map(genre => genre.name).join(', ');
@@ -98,12 +99,12 @@ export default function MovieDetailsPage() {
         </NavLink>
       </>
       <Switch>
-        <Route path={`${path}:movieId/cast`}>
-          <Cast moviesId={moviesId} />
+        <Route path={`${path}/cast`}>
+          <Cast movieId={movieId} />
         </Route>
-        {/* <Route path={`${path}/reviews`}>
-          <Reviews movieId={moviesId} />
-        </Route> */}
+        <Route path={`${path}/reviews`}>
+          <Reviews movieId={movieId} />
+        </Route>
       </Switch>
     </section>
   );
