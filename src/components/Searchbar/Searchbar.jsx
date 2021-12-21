@@ -16,7 +16,7 @@ export default function Searchbar({ onSubmit }) {
 
     if (value.trim() === '') {
       // console.log('Не введено значение');
-      return toast.error('Не введено значение', {
+      return toast.error('No value entered', {
         position: 'top-right',
         autoClose: 5000,
         hideProgressBar: false,
@@ -40,7 +40,7 @@ export default function Searchbar({ onSubmit }) {
         <input
           className={s.SearchForm_input}
           type="text"
-          placeholder="Search images and photos"
+          placeholder="Search movies"
           value={value}
           autoComplete="off"
           autoFocus

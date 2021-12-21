@@ -11,7 +11,7 @@ export default function Cast({ movieId }) {
   //   console.log(movieId);
 
   useEffect(() => {
-    fetchMovieCasts({ movieId })
+    fetchMovieCasts(movieId)
       .then(data => setCast(data.cast))
       .catch(error =>
         toast.error('Error, try again later', {
@@ -28,9 +28,9 @@ export default function Cast({ movieId }) {
   return (
     <>
       {cast && cast.length > 0 ? (
-        <ul>
+        <ul className={s.CastList}>
           {cast.map(({ id, profile_path, name, character }) => (
-            <li key={id} className={s.CastItem}>
+            <li key={id}>
               <img
                 src={
                   profile_path
@@ -38,8 +38,8 @@ export default function Cast({ movieId }) {
                     : defaultImg
                 }
                 alt={name}
-                className={null}
-                width="150"
+                className={s.CastImg}
+                width="250"
               />
               <p>{name}</p>
               <p>{character}</p>
