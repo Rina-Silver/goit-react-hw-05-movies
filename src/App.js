@@ -4,7 +4,8 @@ import AppBar from './components/AppBar';
 import s from './App.module.css';
 import HomePage from 'views/HomePage';
 import MoviesPage from 'views/MoviesPage';
-import NotFoundPage from 'views/NotFoundPage/NotFoundPage';
+import NotFoundPage from 'views/NotFoundPage';
+import MovieDetailsPage from 'views/MovieDetailsPage';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
         </Route>
         <Route path="/movies" exact>
           <MoviesPage />
+        </Route>
+        <Route path="/movies/:moviesId">
+          <MovieDetailsPage />
         </Route>
         <Route>
           <NotFoundPage />
