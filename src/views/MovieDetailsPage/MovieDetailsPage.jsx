@@ -42,16 +42,16 @@ export default function MovieDetailsPage() {
       );
   }, [movieId]);
 
+  const onGoBack = () => {
+    history.push(location?.state?.from ?? '/');
+  };
+
   const { poster_path, title, overview, genres, vote_average } = movie;
   const genresList = genres?.map(genre => genre.name).join(', ');
 
   return (
     <section>
-      <button
-        type="button"
-        className={s.Button}
-        onClick={() => history.replace('/')}
-      >
+      <button type="button" className={s.Button} onClick={onGoBack}>
         Go back
       </button>
       {movie && (
