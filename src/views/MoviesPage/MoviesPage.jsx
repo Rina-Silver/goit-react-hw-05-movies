@@ -19,6 +19,34 @@ const MoviesPage = () => {
     if (!searchQuery) {
       return;
     }
+
+    fetchSearchingMovies(searchQuery)
+      .then(data => {
+        if (data.results.length === 0) {
+          toast.info('Nothing found', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setMovies([]);
+        }
+        setMovies(data.results);
+      })
+      .catch(error =>
+        toast.error('Error, try again later', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }),
+      );
   }, [searchQuery]);
 
   const onChangeQuery = query => {
@@ -46,7 +74,7 @@ const MoviesPage = () => {
                       alt={title}
                       className={s.ImageGalleryItem__image}
                     />
-                    <h2 className={null}>{title}</h2>
+                    <h2 className={s.MovieTitle}>{title}</h2>
                   </NavLink>
                 </li>
               );
