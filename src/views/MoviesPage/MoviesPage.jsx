@@ -15,26 +15,25 @@ const MoviesPage = () => {
   //встроенный конструктор
   const searchQuery = new URLSearchParams(location.search).get('query') ?? '';
 
-  // const onChangeQuery = () => {
-  //   history.push({ ...location, search: `` });
-  // };
   useEffect(() => {
-    if (location.search !== '') {
+    if (!searchQuery) {
       return;
     }
+  }, [searchQuery]);
 
-    history.push({ ...location, search: `query=""` });
-  }, [history, location]);
+  const onChangeQuery = query => {
+    history.push({ ...location, search: `query=${query}` });
+  };
 
   return (
     <section>
-      <Searchbar onSubmit={null} />
+      <Searchbar onSubmit={onChangeQuery} />
       {movies && (
         <div className={null}>
-          <ul className={null}>
+          <ul className={s.ImageGallery}>
             {movies.map(({ id, title, poster_path }) => {
               return (
-                <li key={id} className={null}>
+                <li key={id} className={s.ImageGalleryItem}>
                   <NavLink
                     to={{ pathname: `movies/${id}`, state: { from: location } }}
                   >
@@ -45,7 +44,7 @@ const MoviesPage = () => {
                           : defaultImg
                       }
                       alt={title}
-                      className={null}
+                      className={s.ImageGalleryItem__image}
                     />
                     <h2 className={null}>{title}</h2>
                   </NavLink>
