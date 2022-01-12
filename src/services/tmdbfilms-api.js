@@ -1,8 +1,8 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const BASE_URL = 'https://api.themoviedb.org/3';
-// const KEY = process.env.REACT_APP_API_TMDB_KEY;
-const KEY = 'e85286499c79e40d8f6315c51439c4d2';
+
+const KEY = process.env.REACT_APP_API_TMDB_KEY;
 
 async function fetchWithErrorHandling(url = '', config = {}) {
   const response = await fetch(url, config);
@@ -24,6 +24,7 @@ async function fetchWithErrorHandling(url = '', config = {}) {
 }
 
 export function fetchTrendingMovies() {
+  //console.log(KEY);
   return fetchWithErrorHandling(
     `${BASE_URL}/trending/movie/day?api_key=${KEY}`,
   );
