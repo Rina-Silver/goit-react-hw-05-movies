@@ -2,7 +2,7 @@
  * Стили компонента Searchbar
  */
 .Searchbar {
-  margin-bottom: -20px;
+  margin-bottom: 20px;
   top: 0;
   left: 0;
   position: sticky;
