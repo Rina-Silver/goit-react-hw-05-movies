@@ -50,7 +50,7 @@ export default function MovieDetailsPage() {
       <button
         type="button"
         className={s.Button}
-        onClick={() => history.goBack()}
+        onClick={() => history.replace('/')}
       >
         Go back
       </button>
