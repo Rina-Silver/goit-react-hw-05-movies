@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import {
   useLocation,
   useRouteMatch,
@@ -9,11 +9,15 @@ import {
   Route,
 } from 'react-router-dom';
 import { fetchMovieDetails } from '../../services/tmdbfilms-api';
-import Cast from 'views/Cast';
-import Reviews from 'views/Reviews';
 import { toast } from 'react-toastify';
+import Loader from 'components/Loader';
 
 import s from './MovieDetailsPage.module.css';
+
+const Cast = lazy(() => import('../Cast' /* webpackChunkName: "Cast" */));
+const Reviews = lazy(() =>
+  import('../Reviews' /* webpackChunkName: "Reviews" */),
+);
 
 export default function MovieDetailsPage() {
   const { url, path } = useRouteMatch();
@@ -100,14 +104,16 @@ export default function MovieDetailsPage() {
           Reviews
         </NavLink>
       </>
-      <Switch>
-        <Route path={`${path}/cast`}>
-          <Cast movieId={movieId} />
-        </Route>
-        <Route path={`${path}/reviews`}>
-          <Reviews movieId={movieId} />
-        </Route>
-      </Switch>
+      <Suspense fallback={<Loader />}>
+        <Switch>
+          <Route path={`${path}/cast`}>
+            <Cast movieId={movieId} />
+          </Route>
+          <Route path={`${path}/reviews`}>
+            <Reviews movieId={movieId} />
+          </Route>
+        </Switch>
+      </Suspense>
     </section>
   );
 }
