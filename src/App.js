@@ -1,13 +1,14 @@
+import { lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AppBar from './components/AppBar';
 
 import s from './App.module.css';
-import HomePage from 'views/HomePage';
-import MoviesPage from 'views/MoviesPage';
-import NotFoundPage from 'views/NotFoundPage';
-import MovieDetailsPage from 'views/MovieDetailsPage';
+const HomePage = lazy(() => import('views/HomePage'));
+const MoviesPage = lazy(() => import('views/MoviesPage'));
+const NotFoundPage = lazy(() => import('views/NotFoundPage'));
+const MovieDetailsPage = lazy(() => import('views/MovieDetailsPage'));
 
 function App() {
   return (
