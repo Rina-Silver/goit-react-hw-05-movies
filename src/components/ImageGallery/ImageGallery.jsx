@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useRouteMatch, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import s from './ImageGallery.module.css';
 
@@ -7,7 +7,7 @@ export default function ImageGallery({ movies }) {
   const defaultImg = 'https://socialkit.ru/thumbs/crop/406x558/no-image.jpg';
 
   //для вложенной навигации исп url в useRouteMatch
-  const { url } = useRouteMatch();
+  // const { url } = useRouteMatch();
   const location = useLocation();
 
   return (
@@ -17,7 +17,7 @@ export default function ImageGallery({ movies }) {
           <li key={id} className={s.ImageGalleryItem}>
             <Link
               to={{
-                pathname: `${url}movies/${id}`,
+                pathname: `movies/${id}`,
                 state: { from: location },
               }}
             >
@@ -43,7 +43,7 @@ ImageGallery.propTypes = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      poster_path: PropTypes.string.isRequired,
+      poster_path: PropTypes.string,
       title: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,

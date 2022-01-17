@@ -32,6 +32,7 @@ const MoviesPage = () => {
             draggable: true,
             progress: undefined,
           });
+
           setMovies([]);
         }
         setMovies(data.results);
