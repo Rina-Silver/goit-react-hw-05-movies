@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { fetchSearchingMovies } from '../../services/tmdbfilms-api';
-import { NavLink, useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Searchbar from 'components/Searchbar';
-import s from './MoviesPage.module.css';
+import ImageGallery from 'components/ImageGallery';
+import './MoviesPage.module.css';
 
 const MoviesPage = () => {
-  const defaultImg = 'https://socialkit.ru/thumbs/crop/406x558/no-image.jpg';
   const [movies, setMovies] = useState([]);
 
   const history = useHistory();
@@ -56,32 +56,7 @@ const MoviesPage = () => {
   return (
     <section>
       <Searchbar onSubmit={onChangeQuery} />
-      {movies && (
-        <div className={null}>
-          <ul className={s.ImageGallery}>
-            {movies.map(({ id, title, poster_path }) => {
-              return (
-                <li key={id} className={s.ImageGalleryItem}>
-                  <NavLink
-                    to={{ pathname: `movies/${id}`, state: { from: location } }}
-                  >
-                    <img
-                      src={
-                        poster_path
-                          ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                          : defaultImg
-                      }
-                      alt={title}
-                      className={s.ImageGalleryItem__image}
-                    />
-                    <h2 className={s.MovieTitle}>{title}</h2>
-                  </NavLink>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+      {movies && <ImageGallery movies={movies} />}
     </section>
   );
 };
