@@ -14,9 +14,11 @@ import Loader from 'components/Loader';
 
 import s from './MovieDetailsPage.module.css';
 
-const Cast = lazy(() => import('../Cast' /* webpackChunkName: "Cast" */));
+const Cast = lazy(() =>
+  import('../../components/Cast' /* webpackChunkName: "Cast" */),
+);
 const Reviews = lazy(() =>
-  import('../Reviews' /* webpackChunkName: "Reviews" */),
+  import('../../components/Reviews' /* webpackChunkName: "Reviews" */),
 );
 
 export default function MovieDetailsPage() {
