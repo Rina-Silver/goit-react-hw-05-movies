@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AppBar from './components/AppBar';
@@ -35,9 +35,10 @@ function App() {
           <Route path="/movies/:movieId">
             <MovieDetailsPage />
           </Route>
-          <Route>
+          {/* <Route>
             <NotFoundPage />
-          </Route>
+          </Route> */}
+          <Redirect to="/" />
         </Switch>
       </Suspense>
     </div>
